@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
-
 # This script will run under bus_route_challenge folder irrespective of where it was invoked from
 cd $(dirname $0)
 
 dev_build() {
   # Do what you need to package your app, e.g. mvn package
-  true
+  mvn clean package
 }
 
 dev_run() {
   # Do what you need to run your app in the foreground
   # e.g. java -jar target/magic.jar $*
+  java -jar -Dserver.port=8088 transport-rest/target/transport-rest-1.0.0.jar $*
   sleep 600
 }
 
